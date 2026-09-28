@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LapanganKu — Platform Booking Lapangan Futsal, Badminton & Basket</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- HEADER & NAVIGATION                          -->
+  <!-- ============================================ -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-icon">⚽</span>
+        <span class="logo-text">Lapangan<span class="logo-highlight">Ku</span></span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Beranda</a></li>
+          <li><a href="#direktori" class="nav-link">Cari Venue</a></li>
+          <li><a href="#riwayat" class="nav-link">Riwayat Booking</a></li>
+          <li><a href="#dashboard-mitra" class="nav-link">Dashboard Pemilik</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="#login" class="btn btn-outline">Masuk</a>
+        <a href="#register" class="btn btn-primary">Daftar</a>
+        <button class="mobile-toggle" aria-label="Toggle menu" id="mobileToggle">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                 -->
+  <!-- ============================================ -->
+  <main>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="badge badge-success">⚡ Instant Booking & Bayar di Tempat</span>
+          <h1 class="hero-title">
+            Cari & Booking Lapangan Olahraga <span class="text-gradient">Tanpa Ribet</span>
+          </h1>
+          <p class="hero-subtitle">
+            Temukan venue Futsal, Badminton, dan Basket terdekat. Cek ketersediaan jam secara real-time dan konfirmasi slotmu detik ini juga!
+          </p>
+
+          <!-- Quick Search Form -->
+          <form class="search-box" action="#direktori" method="GET">
+            <div class="search-field">
+              <label for="search-sport">Jenis Olahraga</label>
+              <select id="search-sport" name="sport">
+                <option value="">Semua Olahraga</option>
+                <option value="futsal">⚽ Futsal</option>
+                <option value="badminton">🏸 Badminton</option>
+                <option value="basket">🏀 Basket</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label for="search-location">Lokasi / Kota</label>
+              <input type="text" id="search-location" name="location" placeholder="Misal: Jakarta Selatan, Bandung">
+            </div>
+
+            <div class="search-field">
+              <label for="search-date">Tanggal Main</label>
+              <input type="date" id="search-date" name="date">
+            </div>
+
+            <button type="submit" class="btn btn-search">
+              <span>🔍</span> Cari Venue
+            </button>
+          </form>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">150+</span>
+              <span class="stat-label">Venue Terdaftar</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Cabang Olahraga</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">4.9★</span>
+              <span class="stat-label">Rating Pemain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY SECTION -->
+    <section class="section categories-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Pilih Jenis Olahraga</h2>
+          <p class="section-subtitle">Temukan lapangan sesuai dengan hobi dan tim kamu</p>
+        </div>
+
+        <div class="category-grid">
+          <!-- Category 1: Futsal -->
+          <article class="category-card">
+            <div class="category-icon-wrapper futsal-bg">
+              <span class="category-icon">⚽</span>
+            </div>
+            <h3 class="category-name">Futsal</h3>
+            <p class="category-desc">Lapangan Rumput Sintetis, Vinyl, dan Matras Interlock standar nasional.</p>
+            <a href="#direktori?sport=futsal" class="category-link">Lihat Venue Futsal &rarr;</a>
+          </article>
+
+          <!-- Category 2: Badminton -->
+          <article class="category-card">
+            <div class="category-icon-wrapper badminton-bg">
+              <span class="category-icon">🏸</span>
+            </div>
+            <h3 class="category-name">Badminton</h3>
+            <p class="category-desc">Karpet Vinyl BWF Standard, pencahayaan LED terang anti-silau.</p>
+            <a href="#direktori?sport=badminton" class="category-link">Lihat Venue Badminton &rarr;</a>
+          </article>
+
+          <!-- Category 3: Basket -->
+          <article class="category-card">
+            <div class="category-icon-wrapper basket-bg">
+              <span class="category-icon">🏀</span>
+            </div>
+            <h3 class="category-name">Basket</h3>
+            <p class="category-desc">Lapangan Indoor Full-court & Outdoor FIBA approved ring & lantai kayu/interlock.</p>
+            <a href="#direktori?sport=basket" class="category-link">Lihat Venue Basket &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED VENUES (DIREKTORI) SECTION -->
+    <section class="section venues-section" id="direktori">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <h2 class="section-title">Rekomendasi Venue Terpopuler</h2>
+            <p class="section-subtitle">Lapangan favorit pemain dengan rating tertinggi dan fasilitas lengkap</p>
+          </div>
+          <!-- Filter Buttons -->
+          <div class="filter-buttons">
+            <button class="filter-btn active">Semua</button>
+            <button class="filter-btn">Futsal</button>
+            <button class="filter-btn">Badminton</button>
+            <button class="filter-btn">Basket</button>
+          </div>
+        </div>
+
+        <div class="venue-grid">
+
+          <!-- Venue Card 1 -->
+          <article class="venue-card">
+            <div class="venue-image">
+              <div class="venue-image-placeholder futsal-card-img">
+                <span class="venue-sport-badge">⚽ Futsal</span>
+                <span class="venue-status-badge available">Tersedia Hari Ini</span>
+              </div>
+            </div>
+            <div class="venue-body">
+              <div class="venue-meta">
+                <span class="venue-location">📍 Kebayoran Baru, Jakarta Selatan</span>
+                <span class="venue-rating">⭐ 4.9 (128 Ulasan)</span>
+              </div>
+              <h3 class="venue-title">Champion Futsal Center Arena</h3>
+              <p class="venue-facilities">Rumput Sintetis • Kantin • Ruang Ganti • WiFi Free</p>
+              <div class="venue-footer">
+                <div class="venue-price">
+                  <span class="price-amount">Rp 150.000</span>
+                  <span class="price-unit">/ jam</span>
+                </div>
+                <a href="#detail-venue-1" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Venue Card 2 -->
+          <article class="venue-card">
+            <div class="venue-image">
+              <div class="venue-image-placeholder badminton-card-img">
+                <span class="venue-sport-badge">🏸 Badminton</span>
+                <span class="venue-status-badge available">Tersedia Hari Ini</span>
+              </div>
+            </div>
+            <div class="venue-body">
+              <div class="venue-meta">
+                <span class="venue-location">📍 Bandung Wetan, Bandung</span>
+                <span class="venue-rating">⭐ 4.8 (94 Ulasan)</span>
+              </div>
+              <h3 class="venue-title">Smash Hub Badminton Center</h3>
+              <p class="venue-facilities">4 Karpet Vinyl BWF • AC • Locker Room • Parkir Luas</p>
+              <div class="venue-footer">
+                <div class="venue-price">
+                  <span class="price-amount">Rp 65.000</span>
+                  <span class="price-unit">/ jam</span>
+                </div>
+                <a href="#detail-venue-2" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Venue Card 3 -->
+          <article class="venue-card">
+            <div class="venue-image">
+              <div class="venue-image-placeholder basket-card-img">
+                <span class="venue-sport-badge">🏀 Basket</span>
+                <span class="venue-status-badge limited">Tersedia 3 Slot</span>
+              </div>
+            </div>
+            <div class="venue-body">
+              <div class="venue-meta">
+                <span class="venue-location">📍 Gubeng, Surabaya</span>
+                <span class="venue-rating">⭐ 4.7 (67 Ulasan)</span>
+              </div>
+              <h3 class="venue-title">SlamDunk Indoor Basketball Arena</h3>
+              <p class="venue-facilities">Wood Floor • Ring FIBA Standard • Tribune Penonton</p>
+              <div class="venue-footer">
+                <div class="venue-price">
+                  <span class="price-amount">Rp 120.000</span>
+                  <span class="price-unit">/ jam</span>
+                </div>
+                <a href="#detail-venue-3" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Venue Card 4 -->
+          <article class="venue-card">
+            <div class="venue-image">
+              <div class="venue-image-placeholder multi-card-img">
+                <span class="venue-sport-badge">⚽ Futsal & 🏸 Badminton</span>
+                <span class="venue-status-badge available">Tersedia Hari Ini</span>
+              </div>
+            </div>
+            <div class="venue-body">
+              <div class="venue-meta">
+                <span class="venue-location">📍 Grogol, Jakarta Barat</span>
+                <span class="venue-rating">⭐ 4.9 (156 Ulasan)</span>
+              </div>
+              <h3 class="venue-title">Garuda Sport Hall Multi-Court</h3>
+              <p class="venue-facilities">Futsal Vinyl • 6 Lapangan Badminton • Musholla</p>
+              <div class="venue-footer">
+                <div class="venue-price">
+                  <span class="price-amount">Rp 100.000</span>
+                  <span class="price-unit">/ jam</span>
+                </div>
+                <a href="#detail-venue-4" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="section how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Cara Mudah Booking di LapanganKu</h2>
+          <p class="section-subtitle">Hanya butuh 3 langkah singkat tanpa perlu pembayaran awal online</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Pilih Venue & Olahraga</h3>
+            <p>Cari lapangan berdasarkan lokasi terdekat, cabang olahraga (Futsal, Badminton, Basket), dan fasilitas yang kamu inginkan.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Pilih Jam & Slot Real-time</h3>
+            <p>Lihat kalender ketersediaan slot yang belum terisi per jam secara transparan tanpa perlu menelepon admin.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Konfirmasi & Bayar di Tempat</h3>
+            <p>Terima bukti booking otomatis dan langsung datang ke lokasi. Pembayaran dilakukan secara tunai/cash di tempat!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNER / OWNER CTA SECTION -->
+    <section class="section partner-section" id="dashboard-mitra">
+      <div class="container">
+        <div class="partner-card">
+          <div class="partner-content">
+            <span class="badge badge-warning">🤝 Khusus Pemilik Venue</span>
+            <h2>Punya Lapangan Olahraga? Daftarkan Venue Anda Sekarang!</h2>
+            <p>
+              Kelola jadwal ketersediaan lapangan secara otomatis, atur slot per jam, serta terima atau tolak booking dari pemain dengan mudah melalui Dashboard Mitra.
+            </p>
+
+            <ul class="partner-benefits">
+              <li>✓ Tingkatkan keterisian slot jam kosong venue Anda</li>
+              <li>✓ Kelola status jadwal secara real-time & transparan</li>
+              <li>✓ Bebas biaya pendaftaran awal bagi mitra baru</li>
+            </ul>
+
+            <div class="partner-actions">
+              <a href="#daftar-mitra" class="btn btn-secondary">Daftar Sebagai Mitra Venue</a>
+              <a href="#dashboard-demo" class="btn btn-outline-light">Lihat Demo Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <span class="logo-icon">⚽</span>
+          <span class="logo-text text-light">Lapangan<span class="logo-highlight">Ku</span></span>
+        </a>
+        <p class="footer-desc">
+          Platform direktori dan booking slot lapangan olahraga Futsal, Badminton, dan Basket terdepan. Memudahkan pemain dan pemilik venue bertransaksi secara langsung.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-group">
+          <h4>Pemain</h4>
+          <ul>
+            <li><a href="#direktori">Cari Venue Futsal</a></li>
+            <li><a href="#direktori">Cari Venue Badminton</a></li>
+            <li><a href="#direktori">Cari Venue Basket</a></li>
+            <li><a href="#riwayat">Cek Status Booking</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-group">
+          <h4>Pemilik Venue</h4>
+          <ul>
+            <li><a href="#dashboard-mitra">Cara Jadi Mitra</a></li>
+            <li><a href="#dashboard-mitra">Dashboard Pengelola</a></li>
+            <li><a href="#dashboard-mitra">Manajemen Jadwal Slot</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-group">
+          <h4>LapanganKu</h4>
+          <ul>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#syarat">Syarat & Ketentuan</a></li>
+            <li><a href="#kontak">Bantuan & Kontak</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p>&copy; 2026 LapanganKu — Tugas Web Programming Pertemuan 2. All rights reserved.</p>
+        <div class="footer-socials">
+          <span>MVP Semester 5 | Futsal • Badminton • Basket</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
