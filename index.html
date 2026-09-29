@@ -1,330 +1,344 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LapanganKu — Platform Booking Lapangan Futsal, Badminton & Basket</title>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
 
-  <!-- ============================================ -->
-  <!-- HEADER & NAVIGATION                          -->
-  <!-- ============================================ -->
-  <header class="navbar">
-    <div class="container navbar-container">
-      <a href="index.html" class="brand-logo">
-        <span class="logo-icon">⚽</span>
-        <span class="logo-text">Lapangan<span class="logo-highlight">Ku</span></span>
+  <!-- Tailwind CSS (CDN) — menggantikan css/style.css -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] },
+          keyframes: {
+            fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
+            slideUp: { from: { transform: 'translateY(20px)', opacity: 0 }, to: { transform: 'translateY(0)', opacity: 1 } },
+            slideInRight: { from: { transform: 'translateX(100px)', opacity: 0 }, to: { transform: 'translateX(0)', opacity: 1 } }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.25s ease-out',
+            'slide-up': 'slideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+            'slide-in-right': 'slideInRight 0.3s ease-out'
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="w-full overflow-x-hidden bg-slate-50 font-sans leading-[1.6] text-slate-900">
+
+  <!-- ============ HEADER & NAVIGATION ============ -->
+  <header class="sticky top-0 z-[100] flex h-[76px] items-center border-b border-slate-200 bg-white/90 backdrop-blur-md">
+    <div class="mx-auto flex w-full max-w-[1200px] items-center justify-between px-5 md:px-6">
+      <a href="index.html" class="flex items-center gap-2 text-[1.4rem] font-extrabold text-slate-900">
+        <span class="text-2xl">⚽</span>
+        <span>Lapangan<span class="text-emerald-600">Ku</span></span>
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="nav-menu" id="navMenu">
-        <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">Beranda</a></li>
-          <li><a href="#direktori" class="nav-link">Cari Venue</a></li>
-          <li><a href="#riwayat" class="nav-link">Riwayat Booking</a></li>
-          <li><a href="#dashboard-mitra" class="nav-link">Dashboard Pemilik</a></li>
+      <!-- Menu: disembunyikan di mobile, dibuka lewat class "active" dari JavaScript -->
+      <nav id="navMenu" class="hidden absolute left-0 top-[76px] z-[99] w-full border-b border-slate-200 bg-white px-5 py-6 shadow-[0_15px_30px_rgba(0,0,0,0.12)] md:static md:block md:w-auto md:border-0 md:bg-transparent md:p-0 md:shadow-none [&.active]:block [&.active]:animate-fade-in">
+        <ul class="flex flex-col items-start gap-5 md:flex-row md:items-center md:gap-8">
+          <li><a href="index.html" class="nav-link active text-[0.95rem] font-medium text-slate-500 transition hover:font-semibold hover:text-emerald-600 [&.active]:font-semibold [&.active]:text-emerald-600">Beranda</a></li>
+          <li><a href="#direktori" class="nav-link text-[0.95rem] font-medium text-slate-500 transition hover:font-semibold hover:text-emerald-600 [&.active]:font-semibold [&.active]:text-emerald-600">Cari Venue</a></li>
+          <li><a href="#riwayat" class="nav-link text-[0.95rem] font-medium text-slate-500 transition hover:font-semibold hover:text-emerald-600 [&.active]:font-semibold [&.active]:text-emerald-600">Riwayat Booking</a></li>
+          <li><a href="#dashboard-mitra" class="nav-link text-[0.95rem] font-medium text-slate-500 transition hover:font-semibold hover:text-emerald-600 [&.active]:font-semibold [&.active]:text-emerald-600">Dashboard Pemilik</a></li>
+          <li class="mt-4 flex w-full flex-col gap-3 border-t border-slate-200 pt-5 md:hidden">
+            <a href="#login" class="inline-flex w-full items-center justify-center rounded-xl border-2 border-slate-200 px-[1.4rem] py-3 text-[0.95rem] font-semibold transition hover:border-emerald-600 hover:bg-emerald-50 hover:text-emerald-600">Masuk</a>
+            <a href="#register" class="inline-flex w-full items-center justify-center rounded-xl border-2 border-transparent bg-emerald-600 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-white transition hover:bg-emerald-700">Daftar</a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="nav-actions">
-        <a href="#login" class="btn btn-outline">Masuk</a>
-        <a href="#register" class="btn btn-primary">Daftar</a>
-        <button class="mobile-toggle" aria-label="Toggle menu" id="mobileToggle">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
+      <div class="flex items-center gap-3">
+        <a href="#login" class="hidden items-center justify-center rounded-xl border-2 border-slate-200 px-[1.4rem] py-3 text-[0.95rem] font-semibold transition hover:border-emerald-600 hover:bg-emerald-50 hover:text-emerald-600 md:inline-flex">Masuk</a>
+        <a href="#register" class="hidden items-center justify-center rounded-xl border-2 border-transparent bg-emerald-600 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30 md:inline-flex">Daftar</a>
+        <button id="mobileToggle" aria-label="Toggle menu" class="p-1.5 md:hidden">
+          <span class="my-[5px] block h-0.5 w-6 bg-slate-900"></span>
+          <span class="my-[5px] block h-0.5 w-6 bg-slate-900"></span>
+          <span class="my-[5px] block h-0.5 w-6 bg-slate-900"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ============================================ -->
-  <!-- MAIN CONTENT                                 -->
-  <!-- ============================================ -->
   <main>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="badge badge-success">⚡ Instant Booking & Bayar di Tempat</span>
-          <h1 class="hero-title">
-            Cari & Booking Lapangan Olahraga <span class="text-gradient">Tanpa Ribet</span>
+    <!-- ============ HERO ============ -->
+    <section class="bg-[radial-gradient(circle_at_80%_20%,rgba(5,150,105,0.08),transparent_50%),radial-gradient(circle_at_20%_80%,rgba(245,158,11,0.05),transparent_50%)] pb-20 pt-16">
+      <div class="mx-auto flex w-full max-w-[1200px] flex-col items-center px-5 text-center md:px-6">
+        <div class="w-full max-w-[860px]">
+          <span class="inline-block rounded-full bg-emerald-50 px-[0.85rem] py-[0.35rem] text-sm font-semibold text-emerald-600">⚡ Instant Booking & Bayar di Tempat</span>
+          <h1 class="mb-4 mt-[1.2rem] text-[1.75rem] font-extrabold leading-[1.25] tracking-tight md:text-[2.4rem] md:leading-[1.2] lg:text-[3rem]">
+            Cari & Booking Lapangan Olahraga <span class="bg-gradient-to-br from-emerald-600 to-emerald-500 bg-clip-text text-transparent">Tanpa Ribet</span>
           </h1>
-          <p class="hero-subtitle">
+          <p class="mb-7 text-[0.95rem] text-slate-500 md:mb-10 md:text-[1.15rem]">
             Temukan venue Futsal, Badminton, dan Basket terdekat. Cek ketersediaan jam secara real-time dan konfirmasi slotmu detik ini juga!
           </p>
 
           <!-- Quick Search Form -->
-          <form class="search-box" action="#direktori" method="GET">
-            <div class="search-field">
-              <label for="search-sport">Jenis Olahraga</label>
-              <select id="search-sport" name="sport">
-                <option value="">Semua Olahraga</option>
+          <form id="heroSearchForm" action="#direktori" method="GET" class="grid grid-cols-1 items-end gap-4 rounded-[20px] bg-white/90 p-4 text-left shadow-[0_20px_40px_-15px_rgba(5,150,105,0.15),0_0_0_1px_rgba(5,150,105,0.12)] backdrop-blur-xl transition hover:shadow-[0_25px_50px_-12px_rgba(5,150,105,0.22),0_0_0_1px_rgba(5,150,105,0.25)] md:grid-cols-2 md:gap-5 md:rounded-3xl md:p-6 lg:grid-cols-[1.1fr_1.2fr_1fr_auto]">
+            <div class="flex flex-col gap-2">
+              <label for="search-sport" class="text-xs font-extrabold uppercase tracking-[0.08em] text-slate-600">Jenis Olahraga</label>
+              <select id="search-sport" name="sport" class="w-full appearance-none rounded-[14px] border-[1.5px] border-slate-200 bg-slate-50/80 px-[1.1rem] py-[0.85rem] text-base font-semibold text-slate-900 outline-none transition hover:border-slate-300 hover:bg-white focus:-translate-y-px focus:border-emerald-600 focus:bg-white focus:ring-4 focus:ring-emerald-600/20">
+                <option value="all">Semua Olahraga</option>
                 <option value="futsal">⚽ Futsal</option>
                 <option value="badminton">🏸 Badminton</option>
                 <option value="basket">🏀 Basket</option>
               </select>
             </div>
 
-            <div class="search-field">
-              <label for="search-location">Lokasi / Kota</label>
-              <input type="text" id="search-location" name="location" placeholder="Misal: Jakarta Selatan, Bandung">
+            <div class="flex flex-col gap-2">
+              <label for="search-location" class="text-xs font-extrabold uppercase tracking-[0.08em] text-slate-600">Lokasi / Kota</label>
+              <input type="text" id="search-location" name="location" placeholder="Misal: Jakarta, Bandung, Surabaya" class="w-full appearance-none rounded-[14px] border-[1.5px] border-slate-200 bg-slate-50/80 px-[1.1rem] py-[0.85rem] text-base font-semibold text-slate-900 outline-none transition hover:border-slate-300 hover:bg-white focus:-translate-y-px focus:border-emerald-600 focus:bg-white focus:ring-4 focus:ring-emerald-600/20">
             </div>
 
-            <div class="search-field">
-              <label for="search-date">Tanggal Main</label>
-              <input type="date" id="search-date" name="date">
+            <div class="flex flex-col gap-2">
+              <label for="search-date" class="text-xs font-extrabold uppercase tracking-[0.08em] text-slate-600">Tanggal Main</label>
+              <input type="date" id="search-date" name="date" class="w-full appearance-none rounded-[14px] border-[1.5px] border-slate-200 bg-slate-50/80 px-[1.1rem] py-[0.85rem] text-base font-semibold text-slate-900 outline-none transition hover:border-slate-300 hover:bg-white focus:-translate-y-px focus:border-emerald-600 focus:bg-white focus:ring-4 focus:ring-emerald-600/20">
             </div>
 
-            <button type="submit" class="btn btn-search">
+            <button type="submit" class="inline-flex h-12 items-center justify-center gap-[0.6rem] rounded-[14px] bg-gradient-to-br from-emerald-600 to-emerald-500 px-7 text-base font-bold tracking-[0.02em] text-white shadow-[0_8px_20px_-4px_rgba(5,150,105,0.4)] transition hover:-translate-y-0.5 hover:scale-[1.02] hover:from-emerald-700 hover:to-emerald-600 hover:shadow-[0_12px_25px_-4px_rgba(5,150,105,0.5)] md:col-span-2 md:h-[52px] md:text-[0.95rem] lg:col-span-1">
               <span>🔍</span> Cari Venue
             </button>
           </form>
 
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-number">150+</span>
-              <span class="stat-label">Venue Terdaftar</span>
+          <div class="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row md:gap-10">
+            <div class="flex flex-col items-center">
+              <span class="text-[1.75rem] font-extrabold text-slate-900">150+</span>
+              <span class="text-sm text-slate-500">Venue Terdaftar</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-number">3</span>
-              <span class="stat-label">Cabang Olahraga</span>
+            <div class="h-px w-[60px] bg-slate-200 md:h-9 md:w-px"></div>
+            <div class="flex flex-col items-center">
+              <span class="text-[1.75rem] font-extrabold text-slate-900">3</span>
+              <span class="text-sm text-slate-500">Cabang Olahraga</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-number">4.9★</span>
-              <span class="stat-label">Rating Pemain</span>
+            <div class="h-px w-[60px] bg-slate-200 md:h-9 md:w-px"></div>
+            <div class="flex flex-col items-center">
+              <span class="text-[1.75rem] font-extrabold text-slate-900">4.9★</span>
+              <span class="text-sm text-slate-500">Rating Pemain</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CATEGORY SECTION -->
-    <section class="section categories-section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Pilih Jenis Olahraga</h2>
-          <p class="section-subtitle">Temukan lapangan sesuai dengan hobi dan tim kamu</p>
+    <!-- ============ KATEGORI ============ -->
+    <section class="border-y border-slate-200 bg-white py-[4.5rem]">
+      <div class="mx-auto w-full max-w-[1200px] px-5 md:px-6">
+        <div class="mx-auto mb-12 max-w-[600px] text-center">
+          <h2 class="text-[2rem] font-extrabold leading-[1.3] text-slate-900">Pilih Jenis Olahraga</h2>
+          <p class="mt-[0.4rem] text-base text-slate-500">Temukan lapangan sesuai dengan hobi dan tim kamu</p>
         </div>
 
-        <div class="category-grid">
-          <!-- Category 1: Futsal -->
-          <article class="category-card">
-            <div class="category-icon-wrapper futsal-bg">
-              <span class="category-icon">⚽</span>
-            </div>
-            <h3 class="category-name">Futsal</h3>
-            <p class="category-desc">Lapangan Rumput Sintetis, Vinyl, dan Matras Interlock standar nasional.</p>
-            <a href="#direktori?sport=futsal" class="category-link">Lihat Venue Futsal &rarr;</a>
+        <div class="grid gap-5 md:grid-cols-3 md:gap-7">
+          <article class="category-card flex cursor-pointer flex-col items-start rounded-[18px] border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1.5 hover:border-emerald-600 hover:bg-white hover:shadow-md" data-sport-click="futsal">
+            <div class="mb-5 flex h-[60px] w-[60px] items-center justify-center rounded-xl bg-emerald-100 text-[1.8rem]">⚽</div>
+            <h3 class="mb-2 text-[1.35rem] font-bold">Futsal</h3>
+            <p class="mb-6 text-[0.9rem] text-slate-500">Lapangan Rumput Sintetis, Vinyl, dan Matras Interlock standar nasional.</p>
+            <a href="#direktori" data-filter-link="futsal" class="text-[0.9rem] font-bold text-emerald-600">Lihat Venue Futsal &rarr;</a>
           </article>
 
-          <!-- Category 2: Badminton -->
-          <article class="category-card">
-            <div class="category-icon-wrapper badminton-bg">
-              <span class="category-icon">🏸</span>
-            </div>
-            <h3 class="category-name">Badminton</h3>
-            <p class="category-desc">Karpet Vinyl BWF Standard, pencahayaan LED terang anti-silau.</p>
-            <a href="#direktori?sport=badminton" class="category-link">Lihat Venue Badminton &rarr;</a>
+          <article class="category-card flex cursor-pointer flex-col items-start rounded-[18px] border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1.5 hover:border-emerald-600 hover:bg-white hover:shadow-md" data-sport-click="badminton">
+            <div class="mb-5 flex h-[60px] w-[60px] items-center justify-center rounded-xl bg-sky-100 text-[1.8rem]">🏸</div>
+            <h3 class="mb-2 text-[1.35rem] font-bold">Badminton</h3>
+            <p class="mb-6 text-[0.9rem] text-slate-500">Karpet Vinyl BWF Standard, pencahayaan LED terang anti-silau.</p>
+            <a href="#direktori" data-filter-link="badminton" class="text-[0.9rem] font-bold text-emerald-600">Lihat Venue Badminton &rarr;</a>
           </article>
 
-          <!-- Category 3: Basket -->
-          <article class="category-card">
-            <div class="category-icon-wrapper basket-bg">
-              <span class="category-icon">🏀</span>
-            </div>
-            <h3 class="category-name">Basket</h3>
-            <p class="category-desc">Lapangan Indoor Full-court & Outdoor FIBA approved ring & lantai kayu/interlock.</p>
-            <a href="#direktori?sport=basket" class="category-link">Lihat Venue Basket &rarr;</a>
+          <article class="category-card flex cursor-pointer flex-col items-start rounded-[18px] border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1.5 hover:border-emerald-600 hover:bg-white hover:shadow-md" data-sport-click="basket">
+            <div class="mb-5 flex h-[60px] w-[60px] items-center justify-center rounded-xl bg-amber-100 text-[1.8rem]">🏀</div>
+            <h3 class="mb-2 text-[1.35rem] font-bold">Basket</h3>
+            <p class="mb-6 text-[0.9rem] text-slate-500">Lapangan Indoor Full-court & Outdoor FIBA approved ring & lantai kayu/interlock.</p>
+            <a href="#direktori" data-filter-link="basket" class="text-[0.9rem] font-bold text-emerald-600">Lihat Venue Basket &rarr;</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED VENUES (DIREKTORI) SECTION -->
-    <section class="section venues-section" id="direktori">
-      <div class="container">
-        <div class="section-header-flex">
+    <!-- ============ DIREKTORI VENUE ============ -->
+    <section id="direktori" class="py-[4.5rem]">
+      <div class="mx-auto w-full max-w-[1200px] px-5 md:px-6">
+        <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 class="section-title">Rekomendasi Venue Terpopuler</h2>
-            <p class="section-subtitle">Lapangan favorit pemain dengan rating tertinggi dan fasilitas lengkap</p>
+            <h2 class="text-[2rem] font-extrabold leading-[1.3] text-slate-900">Rekomendasi Venue Terpopuler</h2>
+            <p class="mt-[0.4rem] text-base text-slate-500">Lapangan favorit pemain dengan rating tertinggi dan fasilitas lengkap</p>
           </div>
-          <!-- Filter Buttons -->
-          <div class="filter-buttons">
-            <button class="filter-btn active">Semua</button>
-            <button class="filter-btn">Futsal</button>
-            <button class="filter-btn">Badminton</button>
-            <button class="filter-btn">Basket</button>
+          <!-- Filter Buttons: class "active" dipasang/dihapus oleh JavaScript -->
+          <div id="filterButtons" class="flex max-w-full gap-2 overflow-x-auto whitespace-nowrap pb-2 md:overflow-visible md:pb-0">
+            <button class="filter-btn active shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-emerald-600 hover:bg-emerald-600 hover:text-white [&.active]:border-emerald-600 [&.active]:bg-emerald-600 [&.active]:text-white" data-sport="all">Semua</button>
+            <button class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-emerald-600 hover:bg-emerald-600 hover:text-white [&.active]:border-emerald-600 [&.active]:bg-emerald-600 [&.active]:text-white" data-sport="futsal">Futsal</button>
+            <button class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-emerald-600 hover:bg-emerald-600 hover:text-white [&.active]:border-emerald-600 [&.active]:bg-emerald-600 [&.active]:text-white" data-sport="badminton">Badminton</button>
+            <button class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-emerald-600 hover:bg-emerald-600 hover:text-white [&.active]:border-emerald-600 [&.active]:bg-emerald-600 [&.active]:text-white" data-sport="basket">Basket</button>
           </div>
         </div>
 
-        <div class="venue-grid">
+        <div id="venueGrid" class="grid grid-cols-1 gap-6 md:grid-cols-[repeat(auto-fit,minmax(270px,1fr))] md:gap-7">
 
-          <!-- Venue Card 1 -->
-          <article class="venue-card">
-            <div class="venue-image">
-              <div class="venue-image-placeholder futsal-card-img">
-                <span class="venue-sport-badge">⚽ Futsal</span>
-                <span class="venue-status-badge available">Tersedia Hari Ini</span>
-              </div>
+          <!-- Venue 1 -->
+          <article class="venue-card flex flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white transition hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.12)]" data-sport="futsal" data-name="Champion Futsal Center Arena" data-price="150000" data-location="Jakarta Selatan">
+            <div class="relative flex h-[180px] w-full flex-col items-start justify-between bg-gradient-to-br from-emerald-800 to-emerald-600 p-4">
+              <span class="rounded-full bg-white/90 px-[0.65rem] py-[0.3rem] text-xs font-bold text-slate-900 backdrop-blur-sm">⚽ Futsal</span>
+              <span class="self-end rounded-full bg-emerald-500 px-[0.65rem] py-[0.3rem] text-xs font-bold text-white">Tersedia Hari Ini</span>
             </div>
-            <div class="venue-body">
-              <div class="venue-meta">
-                <span class="venue-location">📍 Kebayoran Baru, Jakarta Selatan</span>
-                <span class="venue-rating">⭐ 4.9 (128 Ulasan)</span>
+            <div class="flex grow flex-col p-5">
+              <div class="mb-[0.6rem] flex items-center justify-between text-[0.8rem] text-slate-500">
+                <span>📍 Kebayoran Baru, Jakarta Selatan</span>
+                <span class="font-bold text-slate-900">⭐ 4.9 (128 Ulasan)</span>
               </div>
-              <h3 class="venue-title">Champion Futsal Center Arena</h3>
-              <p class="venue-facilities">Rumput Sintetis • Kantin • Ruang Ganti • WiFi Free</p>
-              <div class="venue-footer">
-                <div class="venue-price">
-                  <span class="price-amount">Rp 150.000</span>
-                  <span class="price-unit">/ jam</span>
+              <h3 class="mb-[0.4rem] text-[1.15rem] font-bold text-slate-900">Champion Futsal Center Arena</h3>
+              <p class="mb-5 text-[0.85rem] text-slate-500">Rumput Sintetis • Kantin • Ruang Ganti • WiFi Free</p>
+              <div class="mt-auto flex items-center justify-between border-t border-dashed border-slate-200 pt-4">
+                <div>
+                  <span class="text-[1.15rem] font-extrabold text-emerald-600">Rp 150.000</span>
+                  <span class="text-[0.8rem] text-slate-500">/ jam</span>
                 </div>
-                <a href="#detail-venue-1" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+                <button type="button" class="btn-open-modal inline-flex items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-emerald-600 px-4 py-2 text-[0.85rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
+                  data-name="Champion Futsal Center Arena" data-price="150000" data-location="Jakarta Selatan" data-sport="Futsal">
+                  Cek Slot & Booking
+                </button>
               </div>
             </div>
           </article>
 
-          <!-- Venue Card 2 -->
-          <article class="venue-card">
-            <div class="venue-image">
-              <div class="venue-image-placeholder badminton-card-img">
-                <span class="venue-sport-badge">🏸 Badminton</span>
-                <span class="venue-status-badge available">Tersedia Hari Ini</span>
-              </div>
+          <!-- Venue 2 -->
+          <article class="venue-card flex flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white transition hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.12)]" data-sport="badminton" data-name="Smash Hub Badminton Center" data-price="65000" data-location="Bandung">
+            <div class="relative flex h-[180px] w-full flex-col items-start justify-between bg-gradient-to-br from-sky-600 to-sky-400 p-4">
+              <span class="rounded-full bg-white/90 px-[0.65rem] py-[0.3rem] text-xs font-bold text-slate-900 backdrop-blur-sm">🏸 Badminton</span>
+              <span class="self-end rounded-full bg-emerald-500 px-[0.65rem] py-[0.3rem] text-xs font-bold text-white">Tersedia Hari Ini</span>
             </div>
-            <div class="venue-body">
-              <div class="venue-meta">
-                <span class="venue-location">📍 Bandung Wetan, Bandung</span>
-                <span class="venue-rating">⭐ 4.8 (94 Ulasan)</span>
+            <div class="flex grow flex-col p-5">
+              <div class="mb-[0.6rem] flex items-center justify-between text-[0.8rem] text-slate-500">
+                <span>📍 Bandung Wetan, Bandung</span>
+                <span class="font-bold text-slate-900">⭐ 4.8 (94 Ulasan)</span>
               </div>
-              <h3 class="venue-title">Smash Hub Badminton Center</h3>
-              <p class="venue-facilities">4 Karpet Vinyl BWF • AC • Locker Room • Parkir Luas</p>
-              <div class="venue-footer">
-                <div class="venue-price">
-                  <span class="price-amount">Rp 65.000</span>
-                  <span class="price-unit">/ jam</span>
+              <h3 class="mb-[0.4rem] text-[1.15rem] font-bold text-slate-900">Smash Hub Badminton Center</h3>
+              <p class="mb-5 text-[0.85rem] text-slate-500">4 Karpet Vinyl BWF • AC • Locker Room • Parkir Luas</p>
+              <div class="mt-auto flex items-center justify-between border-t border-dashed border-slate-200 pt-4">
+                <div>
+                  <span class="text-[1.15rem] font-extrabold text-emerald-600">Rp 65.000</span>
+                  <span class="text-[0.8rem] text-slate-500">/ jam</span>
                 </div>
-                <a href="#detail-venue-2" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+                <button type="button" class="btn-open-modal inline-flex items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-emerald-600 px-4 py-2 text-[0.85rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
+                  data-name="Smash Hub Badminton Center" data-price="65000" data-location="Bandung" data-sport="Badminton">
+                  Cek Slot & Booking
+                </button>
               </div>
             </div>
           </article>
 
-          <!-- Venue Card 3 -->
-          <article class="venue-card">
-            <div class="venue-image">
-              <div class="venue-image-placeholder basket-card-img">
-                <span class="venue-sport-badge">🏀 Basket</span>
-                <span class="venue-status-badge limited">Tersedia 3 Slot</span>
-              </div>
+          <!-- Venue 3 -->
+          <article class="venue-card flex flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white transition hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.12)]" data-sport="basket" data-name="SlamDunk Indoor Basketball Arena" data-price="120000" data-location="Surabaya">
+            <div class="relative flex h-[180px] w-full flex-col items-start justify-between bg-gradient-to-br from-amber-600 to-amber-500 p-4">
+              <span class="rounded-full bg-white/90 px-[0.65rem] py-[0.3rem] text-xs font-bold text-slate-900 backdrop-blur-sm">🏀 Basket</span>
+              <span class="self-end rounded-full bg-amber-500 px-[0.65rem] py-[0.3rem] text-xs font-extrabold text-amber-900">⚠️ Terisi Sebagian</span>
             </div>
-            <div class="venue-body">
-              <div class="venue-meta">
-                <span class="venue-location">📍 Gubeng, Surabaya</span>
-                <span class="venue-rating">⭐ 4.7 (67 Ulasan)</span>
+            <div class="flex grow flex-col p-5">
+              <div class="mb-[0.6rem] flex items-center justify-between text-[0.8rem] text-slate-500">
+                <span>📍 Gubeng, Surabaya</span>
+                <span class="font-bold text-slate-900">⭐ 4.7 (67 Ulasan)</span>
               </div>
-              <h3 class="venue-title">SlamDunk Indoor Basketball Arena</h3>
-              <p class="venue-facilities">Wood Floor • Ring FIBA Standard • Tribune Penonton</p>
-              <div class="venue-footer">
-                <div class="venue-price">
-                  <span class="price-amount">Rp 120.000</span>
-                  <span class="price-unit">/ jam</span>
+              <h3 class="mb-[0.4rem] text-[1.15rem] font-bold text-slate-900">SlamDunk Indoor Basketball Arena</h3>
+              <p class="mb-5 text-[0.85rem] text-slate-500">Wood Floor • Ring FIBA Standard • Tribune Penonton</p>
+              <div class="mt-auto flex items-center justify-between border-t border-dashed border-slate-200 pt-4">
+                <div>
+                  <span class="text-[1.15rem] font-extrabold text-emerald-600">Rp 120.000</span>
+                  <span class="text-[0.8rem] text-slate-500">/ jam</span>
                 </div>
-                <a href="#detail-venue-3" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+                <button type="button" class="btn-open-modal inline-flex items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-emerald-600 px-4 py-2 text-[0.85rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
+                  data-name="SlamDunk Indoor Basketball Arena" data-price="120000" data-location="Surabaya" data-sport="Basket">
+                  Cek Slot & Booking
+                </button>
               </div>
             </div>
           </article>
 
-          <!-- Venue Card 4 -->
-          <article class="venue-card">
-            <div class="venue-image">
-              <div class="venue-image-placeholder multi-card-img">
-                <span class="venue-sport-badge">⚽ Futsal & 🏸 Badminton</span>
-                <span class="venue-status-badge available">Tersedia Hari Ini</span>
-              </div>
+          <!-- Venue 4 -->
+          <article class="venue-card flex flex-col overflow-hidden rounded-[18px] border border-slate-200 bg-white transition hover:-translate-y-1.5 hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.12)]" data-sport="futsal badminton" data-name="Garuda Sport Hall Multi-Court" data-price="100000" data-location="Jakarta Barat">
+            <div class="relative flex h-[180px] w-full flex-col items-start justify-between bg-gradient-to-br from-slate-600 to-slate-900 p-4">
+              <span class="rounded-full bg-white/90 px-[0.65rem] py-[0.3rem] text-xs font-bold text-slate-900 backdrop-blur-sm">⚽ Futsal & 🏸 Badminton</span>
+              <span class="self-end rounded-full bg-emerald-500 px-[0.65rem] py-[0.3rem] text-xs font-bold text-white">Tersedia Hari Ini</span>
             </div>
-            <div class="venue-body">
-              <div class="venue-meta">
-                <span class="venue-location">📍 Grogol, Jakarta Barat</span>
-                <span class="venue-rating">⭐ 4.9 (156 Ulasan)</span>
+            <div class="flex grow flex-col p-5">
+              <div class="mb-[0.6rem] flex items-center justify-between text-[0.8rem] text-slate-500">
+                <span>📍 Grogol, Jakarta Barat</span>
+                <span class="font-bold text-slate-900">⭐ 4.9 (156 Ulasan)</span>
               </div>
-              <h3 class="venue-title">Garuda Sport Hall Multi-Court</h3>
-              <p class="venue-facilities">Futsal Vinyl • 6 Lapangan Badminton • Musholla</p>
-              <div class="venue-footer">
-                <div class="venue-price">
-                  <span class="price-amount">Rp 100.000</span>
-                  <span class="price-unit">/ jam</span>
+              <h3 class="mb-[0.4rem] text-[1.15rem] font-bold text-slate-900">Garuda Sport Hall Multi-Court</h3>
+              <p class="mb-5 text-[0.85rem] text-slate-500">Futsal Vinyl • 6 Lapangan Badminton • Musholla</p>
+              <div class="mt-auto flex items-center justify-between border-t border-dashed border-slate-200 pt-4">
+                <div>
+                  <span class="text-[1.15rem] font-extrabold text-emerald-600">Rp 100.000</span>
+                  <span class="text-[0.8rem] text-slate-500">/ jam</span>
                 </div>
-                <a href="#detail-venue-4" class="btn btn-sm btn-primary">Cek Slot & Booking</a>
+                <button type="button" class="btn-open-modal inline-flex items-center justify-center gap-2 rounded-lg border-2 border-transparent bg-emerald-600 px-4 py-2 text-[0.85rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
+                  data-name="Garuda Sport Hall Multi-Court" data-price="100000" data-location="Jakarta Barat" data-sport="Futsal & Badminton">
+                  Cek Slot & Booking
+                </button>
               </div>
             </div>
           </article>
 
         </div>
-      </div>
-    </section>
 
-    <!-- HOW IT WORKS SECTION -->
-    <section class="section how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Cara Mudah Booking di LapanganKu</h2>
-          <p class="section-subtitle">Hanya butuh 3 langkah singkat tanpa perlu pembayaran awal online</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>Pilih Venue & Olahraga</h3>
-            <p>Cari lapangan berdasarkan lokasi terdekat, cabang olahraga (Futsal, Badminton, Basket), dan fasilitas yang kamu inginkan.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>Pilih Jam & Slot Real-time</h3>
-            <p>Lihat kalender ketersediaan slot yang belum terisi per jam secara transparan tanpa perlu menelepon admin.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>Konfirmasi & Bayar di Tempat</h3>
-            <p>Terima bukti booking otomatis dan langsung datang ke lokasi. Pembayaran dilakukan secara tunai/cash di tempat!</p>
-          </div>
+        <!-- No Results -->
+        <div id="noResults" class="hidden mt-6 flex flex-col items-center gap-4 rounded-[18px] border border-dashed border-slate-200 bg-white px-4 py-12 text-center text-slate-500">
+          <p>🔍 Tidak ada venue yang cocok dengan pencarian Anda.</p>
+          <button type="button" id="resetFilterBtn" class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-slate-200 px-4 py-2 text-[0.85rem] font-semibold text-slate-900 transition hover:border-emerald-600 hover:bg-emerald-50 hover:text-emerald-600">Tampilkan Semua Venue</button>
         </div>
       </div>
     </section>
 
-    <!-- PARTNER / OWNER CTA SECTION -->
-    <section class="section partner-section" id="dashboard-mitra">
-      <div class="container">
-        <div class="partner-card">
-          <div class="partner-content">
-            <span class="badge badge-warning">🤝 Khusus Pemilik Venue</span>
-            <h2>Punya Lapangan Olahraga? Daftarkan Venue Anda Sekarang!</h2>
-            <p>
+    <!-- ============ CARA BOOKING ============ -->
+    <section class="border-t border-slate-200 bg-white py-[4.5rem]">
+      <div class="mx-auto w-full max-w-[1200px] px-5 md:px-6">
+        <div class="mx-auto mb-12 max-w-[600px] text-center">
+          <h2 class="text-[2rem] font-extrabold leading-[1.3] text-slate-900">Cara Mudah Booking di LapanganKu</h2>
+          <p class="mt-[0.4rem] text-base text-slate-500">Hanya butuh 3 langkah singkat tanpa perlu pembayaran awal online</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3 md:gap-8">
+          <div class="rounded-[18px] bg-slate-50 p-8 text-center">
+            <div class="mx-auto mb-5 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-emerald-600 text-[1.4rem] font-extrabold text-white shadow-[0_4px_12px_rgba(5,150,105,0.3)]">1</div>
+            <h3 class="mb-2 text-xl font-bold">Pilih Venue & Olahraga</h3>
+            <p class="text-[0.9rem] text-slate-500">Cari lapangan berdasarkan lokasi terdekat, cabang olahraga (Futsal, Badminton, Basket), dan fasilitas yang kamu inginkan.</p>
+          </div>
+          <div class="rounded-[18px] bg-slate-50 p-8 text-center">
+            <div class="mx-auto mb-5 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-emerald-600 text-[1.4rem] font-extrabold text-white shadow-[0_4px_12px_rgba(5,150,105,0.3)]">2</div>
+            <h3 class="mb-2 text-xl font-bold">Pilih Jam & Slot Real-time</h3>
+            <p class="text-[0.9rem] text-slate-500">Lihat kalender ketersediaan slot yang belum terisi per jam secara transparan tanpa perlu menelepon admin.</p>
+          </div>
+          <div class="rounded-[18px] bg-slate-50 p-8 text-center">
+            <div class="mx-auto mb-5 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-emerald-600 text-[1.4rem] font-extrabold text-white shadow-[0_4px_12px_rgba(5,150,105,0.3)]">3</div>
+            <h3 class="mb-2 text-xl font-bold">Konfirmasi & Bayar di Tempat</h3>
+            <p class="text-[0.9rem] text-slate-500">Terima bukti booking otomatis dan langsung datang ke lokasi. Pembayaran dilakukan secara tunai/cash di tempat!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA MITRA ============ -->
+    <section id="dashboard-mitra" class="py-[4.5rem]">
+      <div class="mx-auto w-full max-w-[1200px] px-5 md:px-6">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 px-5 py-8 text-white md:px-12 md:py-14">
+          <div class="max-w-[650px]">
+            <span class="inline-block rounded-full bg-amber-100 px-[0.85rem] py-[0.35rem] text-sm font-semibold text-amber-700">🤝 Khusus Pemilik Venue</span>
+            <h2 class="my-4 text-2xl font-extrabold leading-[1.3] md:text-[2.2rem]">Punya Lapangan Olahraga? Daftarkan Venue Anda Sekarang!</h2>
+            <p class="mb-6 text-[1.05rem] text-slate-400">
               Kelola jadwal ketersediaan lapangan secara otomatis, atur slot per jam, serta terima atau tolak booking dari pemain dengan mudah melalui Dashboard Mitra.
             </p>
-
-            <ul class="partner-benefits">
-              <li>✓ Tingkatkan keterisian slot jam kosong venue Anda</li>
-              <li>✓ Kelola status jadwal secara real-time & transparan</li>
-              <li>✓ Bebas biaya pendaftaran awal bagi mitra baru</li>
+            <ul class="mb-8">
+              <li class="mb-2 text-[0.95rem] text-slate-300">✓ Tingkatkan keterisian slot jam kosong venue Anda</li>
+              <li class="mb-2 text-[0.95rem] text-slate-300">✓ Kelola status jadwal secara real-time & transparan</li>
+              <li class="mb-2 text-[0.95rem] text-slate-300">✓ Bebas biaya pendaftaran awal bagi mitra baru</li>
             </ul>
-
-            <div class="partner-actions">
-              <a href="#daftar-mitra" class="btn btn-secondary">Daftar Sebagai Mitra Venue</a>
-              <a href="#dashboard-demo" class="btn btn-outline-light">Lihat Demo Dashboard</a>
+            <div class="flex flex-wrap gap-4">
+              <a href="#daftar-mitra" class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-transparent bg-emerald-600 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-white transition hover:bg-emerald-700">Daftar Sebagai Mitra Venue</a>
+              <a href="#dashboard-demo" class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/40 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-white transition hover:border-white hover:bg-white/10">Lihat Demo Dashboard</a>
             </div>
           </div>
         </div>
@@ -333,61 +347,129 @@
 
   </main>
 
-  <!-- ============================================ -->
-  <!-- FOOTER                                       -->
-  <!-- ============================================ -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <a href="index.html" class="brand-logo">
-          <span class="logo-icon">⚽</span>
-          <span class="logo-text text-light">Lapangan<span class="logo-highlight">Ku</span></span>
+  <!-- ============ MODAL BOOKING ============ -->
+  <div id="bookingModal" aria-hidden="true" class="hidden fixed inset-0 z-[1000] flex animate-fade-in items-center justify-center bg-slate-900/65 p-4 backdrop-blur-[6px]">
+    <div class="max-h-[90vh] w-full max-w-[94vw] animate-slide-up overflow-y-auto rounded-[18px] border border-slate-200 bg-white shadow-[0_20px_40px_rgba(0,0,0,0.2)] md:max-w-[580px] md:rounded-[20px]">
+      <div class="flex items-start justify-between border-b border-slate-200 p-6">
+        <div>
+          <span id="modalSportBadge" class="inline-block rounded-full bg-emerald-50 px-[0.85rem] py-[0.35rem] text-sm font-semibold text-emerald-600">Futsal</span>
+          <h3 id="modalVenueTitle" class="mt-[0.4rem] text-[1.3rem] font-extrabold text-slate-900">Nama Venue</h3>
+          <p id="modalVenueLocation" class="text-[0.85rem] text-slate-500">📍 Lokasi Venue</p>
+        </div>
+        <button id="modalCloseBtn" aria-label="Tutup modal" class="p-[0.2rem] text-[1.8rem] leading-none text-slate-500 transition hover:text-slate-900">&times;</button>
+      </div>
+
+      <form id="bookingForm" class="flex flex-col gap-5 p-6">
+        <div class="flex flex-col gap-2">
+          <label for="bookingDate" class="text-sm font-bold text-slate-900">Pilih Tanggal Main:</label>
+          <input type="date" id="bookingDate" required class="appearance-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-emerald-600 focus:bg-white focus:ring-[3px] focus:ring-emerald-600/15">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-bold text-slate-900">Pilih Slot Jam (Real-Time):</label>
+          <div class="mb-[0.4rem] flex gap-5 text-[0.8rem] text-slate-500">
+            <span class="flex items-center gap-[0.4rem]"><span class="h-3 w-3 rounded-[3px] border border-emerald-500 bg-emerald-50"></span> Tersedia</span>
+            <span class="flex items-center gap-[0.4rem]"><span class="h-3 w-3 rounded-[3px] bg-emerald-600"></span> Terpilih</span>
+            <span class="flex items-center gap-[0.4rem]"><span class="h-3 w-3 rounded-[3px] border border-amber-600 bg-amber-500"></span> Terisi</span>
+          </div>
+          <!-- Tombol slot dibuat oleh JavaScript (renderSlots) -->
+          <div id="slotGrid" class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-[0.6rem]"></div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="playerName" class="text-sm font-bold text-slate-900">Nama Pemain (Pemesan):</label>
+          <input type="text" id="playerName" required placeholder="Masukkan nama lengkap Anda" class="appearance-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-emerald-600 focus:bg-white focus:ring-[3px] focus:ring-emerald-600/15">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="playerPhone" class="text-sm font-bold text-slate-900">Nomor WhatsApp / HP:</label>
+          <input type="tel" id="playerPhone" required placeholder="Misal: 08123456789" class="appearance-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-emerald-600 focus:bg-white focus:ring-[3px] focus:ring-emerald-600/15">
+        </div>
+
+        <div class="flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-[0.9rem]">
+          <div class="flex justify-between text-slate-500">
+            <span>Harga per jam:</span>
+            <span id="modalPricePerJam">Rp 0</span>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>Jumlah slot terpilih:</span>
+            <span id="modalSelectedCount">0 jam</span>
+          </div>
+          <div class="mt-[0.4rem] flex justify-between border-t border-dashed border-slate-200 pt-[0.6rem] font-bold text-slate-900">
+            <span>Total Pembayaran (Bayar di Tempat):</span>
+            <span id="modalTotalPrice" class="text-[1.2rem] font-extrabold text-emerald-600">Rp 0</span>
+          </div>
+        </div>
+
+        <div class="mt-2 flex justify-end gap-3">
+          <button type="button" id="modalCancelBtn" class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-200 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-slate-900 transition hover:border-emerald-600 hover:bg-emerald-50 hover:text-emerald-600">Batal</button>
+          <button type="submit" id="modalSubmitBtn" disabled class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-transparent bg-emerald-600 px-[1.4rem] py-3 text-[0.95rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30 disabled:cursor-not-allowed disabled:bg-slate-400 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none">
+            ⚡ Konfirmasi Booking (Bayar di Tempat)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toastNotification" class="hidden fixed inset-x-4 bottom-4 z-[1100] flex animate-slide-in-right items-center gap-4 rounded-xl border-l-4 border-emerald-600 bg-slate-900 px-6 py-4 text-white shadow-[0_10px_30px_rgba(0,0,0,0.2)] md:inset-x-auto md:bottom-8 md:right-8">
+    <div class="text-2xl">✅</div>
+    <div>
+      <h4 id="toastTitle" class="text-[0.95rem] font-bold">Booking Berhasil!</h4>
+      <p id="toastMessage" class="text-[0.85rem] text-slate-400">Pesanan Anda telah dicatat. Pembayaran dilakukan di tempat.</p>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-slate-900 pt-16 text-slate-400">
+    <div class="mx-auto grid w-full max-w-[1200px] gap-10 px-5 pb-12 md:px-6 lg:grid-cols-[2fr_3fr] lg:gap-16">
+      <div>
+        <a href="index.html" class="flex items-center gap-2 text-[1.4rem] font-extrabold text-white">
+          <span class="text-2xl">⚽</span>
+          <span>Lapangan<span class="text-emerald-600">Ku</span></span>
         </a>
-        <p class="footer-desc">
+        <p class="mt-4 max-w-[320px] text-[0.9rem] leading-relaxed">
           Platform direktori dan booking slot lapangan olahraga Futsal, Badminton, dan Basket terdepan. Memudahkan pemain dan pemilik venue bertransaksi secara langsung.
         </p>
       </div>
 
-      <div class="footer-links">
-        <div class="footer-group">
-          <h4>Pemain</h4>
-          <ul>
-            <li><a href="#direktori">Cari Venue Futsal</a></li>
-            <li><a href="#direktori">Cari Venue Badminton</a></li>
-            <li><a href="#direktori">Cari Venue Basket</a></li>
-            <li><a href="#riwayat">Cek Status Booking</a></li>
+      <div class="grid gap-6 md:grid-cols-3 md:gap-8">
+        <div>
+          <h4 class="mb-5 text-base font-bold text-white">Pemain</h4>
+          <ul class="text-sm">
+            <li class="mb-3"><a href="#direktori" class="transition hover:text-emerald-50">Cari Venue Futsal</a></li>
+            <li class="mb-3"><a href="#direktori" class="transition hover:text-emerald-50">Cari Venue Badminton</a></li>
+            <li class="mb-3"><a href="#direktori" class="transition hover:text-emerald-50">Cari Venue Basket</a></li>
+            <li class="mb-3"><a href="#riwayat" class="transition hover:text-emerald-50">Cek Status Booking</a></li>
           </ul>
         </div>
-
-        <div class="footer-group">
-          <h4>Pemilik Venue</h4>
-          <ul>
-            <li><a href="#dashboard-mitra">Cara Jadi Mitra</a></li>
-            <li><a href="#dashboard-mitra">Dashboard Pengelola</a></li>
-            <li><a href="#dashboard-mitra">Manajemen Jadwal Slot</a></li>
+        <div>
+          <h4 class="mb-5 text-base font-bold text-white">Pemilik Venue</h4>
+          <ul class="text-sm">
+            <li class="mb-3"><a href="#dashboard-mitra" class="transition hover:text-emerald-50">Cara Jadi Mitra</a></li>
+            <li class="mb-3"><a href="#dashboard-mitra" class="transition hover:text-emerald-50">Dashboard Pengelola</a></li>
+            <li class="mb-3"><a href="#dashboard-mitra" class="transition hover:text-emerald-50">Manajemen Jadwal Slot</a></li>
           </ul>
         </div>
-
-        <div class="footer-group">
-          <h4>LapanganKu</h4>
-          <ul>
-            <li><a href="#tentang">Tentang Kami</a></li>
-            <li><a href="#syarat">Syarat & Ketentuan</a></li>
-            <li><a href="#kontak">Bantuan & Kontak</a></li>
+        <div>
+          <h4 class="mb-5 text-base font-bold text-white">LapanganKu</h4>
+          <ul class="text-sm">
+            <li class="mb-3"><a href="#tentang" class="transition hover:text-emerald-50">Tentang Kami</a></li>
+            <li class="mb-3"><a href="#syarat" class="transition hover:text-emerald-50">Syarat & Ketentuan</a></li>
+            <li class="mb-3"><a href="#kontak" class="transition hover:text-emerald-50">Bantuan & Kontak</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <div class="container footer-bottom-content">
-        <p>&copy; 2026 LapanganKu — Tugas Web Programming Pertemuan 2. All rights reserved.</p>
-        <div class="footer-socials">
-          <span>MVP Semester 5 | Futsal • Badminton • Basket</span>
-        </div>
+    <div class="border-t border-slate-700 py-6 text-[0.85rem]">
+      <div class="mx-auto flex w-full max-w-[1200px] flex-wrap items-center justify-between gap-4 px-5 md:px-6">
+        <p>&copy; 2026 LapanganKu — Tugas Web Programming Pertemuan 3. All rights reserved.</p>
+        <span>MVP Semester 5 | Futsal • Badminton • Basket</span>
       </div>
     </div>
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
