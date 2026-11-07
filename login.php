@@ -21,7 +21,7 @@ if (isset($_GET['demo'])) {
             'name' => 'Muchamad Rizky Fanani',
             'email' => 'fanani@student.id',
             'role' => 'pemain',
-            'phone' => '082235577906'
+            'phone' => ''
         ];
         header("Location: riwayat-booking.php");
         exit;
