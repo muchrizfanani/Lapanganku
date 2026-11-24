@@ -69,7 +69,7 @@ class VenueManagementTest extends TestCase
         $this->post(route('login.store'), [
             'email' => $owner->email,
             'password' => 'password',
-        ], ['Accept' => 'text/html'])->assertRedirect(route('venues.index'));
+        ], ['Accept' => 'text/html'])->assertRedirect(route('owner.dashboard'));
 
         $venue = Venue::create([
             'name' => 'Venue Tampilan',
@@ -85,5 +85,28 @@ class VenueManagementTest extends TestCase
         $this->get(route('venues.create'), ['Accept' => 'text/html'])->assertOk();
         $this->get(route('venues.show', $venue), ['Accept' => 'text/html'])->assertOk();
         $this->get(route('venues.edit', $venue), ['Accept' => 'text/html'])->assertOk();
+    }
+
+    public function test_player_sign_in_redirects_to_player_dashboard(): void
+    {
+        $player = User::factory()->create(['role' => 'pemain']);
+        Venue::create([
+            'name' => 'Venue Untuk Pemain',
+            'sport' => 'Futsal',
+            'price' => 100000,
+            'location' => 'Bandung',
+            'address' => 'Jalan Olahraga 12',
+            'status' => 'available',
+        ]);
+
+        $this->post(route('login.store'), [
+            'email' => $player->email,
+            'password' => 'password',
+        ], ['Accept' => 'text/html'])->assertRedirect(route('player.dashboard'));
+
+        $this->get(route('player.dashboard'), ['Accept' => 'text/html'])
+            ->assertOk()
+            ->assertSee('Venue Untuk Pemain');
+        $this->get(route('venues.index'), ['Accept' => 'text/html'])->assertForbidden();
     }
 }

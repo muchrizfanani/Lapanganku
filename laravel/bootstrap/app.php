@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\AuthenticateJwt;
 use App\Http\Middleware\EnsureOwner;
+use App\Http\Middleware\EnsurePlayer;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'owner' => EnsureOwner::class,
+            'player' => EnsurePlayer::class,
             'auth.jwt' => AuthenticateJwt::class,
         ]);
     })
